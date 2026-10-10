@@ -1,11 +1,226 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8">
-    <title>موفعي</title>
-  </head>
-    <body>
-      <h1>مرحبا</h1>
-    </body>
-  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>موقعي | محلل بيانات</title>
+  <meta name="description" content="معرض مشاريعي في تحليل البيانات: Power BI وPython وExcel">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f2f4f1;
+      --ink: #14212b;
+      --muted: #55646f;
+      --line: #cfd7d3;
+      --blue: #1f5fbf;
+      --mint: #2ba58a;
+      --sand: #e6dccb;
+      --panel: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #10181e; --ink: #eaf0ee; --muted: #9aa9b2;
+        --line: #26343d; --blue: #6ea2f2; --mint: #4cc3a6;
+        --sand: #3a3328; --panel: #16222a;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "IBM Plex Sans Arabic", Tahoma, Arial, sans-serif;
+      background: var(--bg); color: var(--ink);
+      line-height: 1.9; font-size: 17px;
+    }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+    /* الرأس */
+    header.top { border-bottom: 1px solid var(--line); }
+    header.top .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 16px; }
+    .brand { font-weight: 700; text-decoration: none; }
+    nav a { margin-inline-start: 22px; text-decoration: none; color: var(--muted); }
+    nav a:hover { color: var(--ink); }
+
+    /* الواجهة */
+    .hero { padding: 72px 0 56px; }
+    .hero .wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
+    h1 { font-size: clamp(34px, 5vw, 56px); line-height: 1.35; font-weight: 700; }
+    .hero p { color: var(--muted); margin-top: 20px; max-width: 34em; }
+    .actions { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { padding: 10px 22px; border-radius: 6px; text-decoration: none; font-weight: 500; border: 1.5px solid var(--ink); }
+    .btn.main { background: var(--ink); color: var(--bg); }
+    .btn:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+    /* الرسم: العنصر المميز */
+    .chart { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 22px 22px 14px; }
+    .chart-title { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+    .bars { display: flex; align-items: flex-end; gap: 10px; height: 180px; }
+    .bar { flex: 1; background: var(--blue); border-radius: 4px 4px 0 0; height: var(--h); transform-origin: bottom; animation: grow .9s cubic-bezier(.2,.8,.2,1) both; }
+    .bar:nth-child(3n) { background: var(--mint); }
+    .bar:nth-child(1){animation-delay:.05s}.bar:nth-child(2){animation-delay:.12s}.bar:nth-child(3){animation-delay:.19s}
+    .bar:nth-child(4){animation-delay:.26s}.bar:nth-child(5){animation-delay:.33s}.bar:nth-child(6){animation-delay:.40s}
+    .bar:nth-child(7){animation-delay:.47s}.bar:nth-child(8){animation-delay:.54s}
+    @keyframes grow { from { transform: scaleY(0); } }
+    .axis { display: flex; gap: 10px; margin-top: 8px; font-size: 12px; color: var(--muted); }
+    .axis span { flex: 1; text-align: center; }
+
+    /* الأدوات */
+    .tools { background: var(--sand); }
+    .tools .wrap { display: flex; flex-wrap: wrap; gap: 8px 28px; padding-block: 16px; align-items: center; }
+    .tools b { margin-inline-end: 6px; }
+
+    /* المشاريع */
+    section.block { padding: 72px 0 24px; }
+    h2 { font-size: 28px; margin-bottom: 28px; }
+    .project { display: grid; grid-template-columns: 220px 1fr; gap: 28px; padding: 28px 0; border-top: 1px solid var(--line); }
+    .thumb { aspect-ratio: 4 / 3; border-radius: 8px; background: var(--panel); border: 1px solid var(--line); overflow: hidden; display: grid; place-items: center; color: var(--muted); font-size: 14px; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .project h3 { font-size: 21px; }
+    .project p { color: var(--muted); margin-top: 6px; }
+    .tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { font-size: 13px; padding: 1px 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--panel); }
+    .links { margin-top: 14px; display: flex; gap: 18px; }
+    .links a { color: var(--blue); font-weight: 500; }
+
+    /* التواصل */
+    #contact { padding-bottom: 72px; }
+    #contact p { color: var(--muted); max-width: 34em; }
+    footer { border-top: 1px solid var(--line); padding: 20px 0; color: var(--muted); font-size: 14px; }
+
+    @media (max-width: 760px) {
+      .hero .wrap, .project { grid-template-columns: 1fr; }
+      .hero { padding-top: 40px; }
+      nav a:first-child { margin-inline-start: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { .bar { animation: none; } html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">اسمك هنا</a>
+    <nav>
+      <a href="#projects">المشاريع</a>
+      <a href="#contact">تواصل</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>أحوّل الأرقام الخام إلى لوحات تُفهم من أول نظرة</h1>
+        <p>محلل بيانات أبني لوحات تفاعلية وتقارير تساعد على اتخاذ القرار، باستخدام Power BI وPython وExcel.</p>
+        <div class="actions">
+          <a class="btn main" href="#projects">شاهد المشاريع</a>
+          <a class="btn" href="#contact">تواصل معي</a>
+        </div>
+      </div>
+      <div class="chart" role="img" aria-label="رسم أعمدة توضيحي للمبيعات الشهرية">
+        <div class="chart-title">مبيعات شهرية (مثال توضيحي)</div>
+        <div class="bars">
+          <div class="bar" style="--h:38%"></div><div class="bar" style="--h:52%"></div>
+          <div class="bar" style="--h:45%"></div><div class="bar" style="--h:70%"></div>
+          <div class="bar" style="--h:62%"></div><div class="bar" style="--h:85%"></div>
+          <div class="bar" style="--h:78%"></div><div class="bar" style="--h:100%"></div>
+        </div>
+        <div class="axis"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tools">
+    <div class="wrap">
+      <b>الأدوات:</b>
+      <span>Power BI</span><span>Python</span><span>Excel</span><span>SQL</span>
+    </div>
+  </div>
+
+  <section class="block" id="projects">
+    <div class="wrap">
+      <h2>مشاريعي</h2>
+      <div id="list"></div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap">
+      <h2>تواصل</h2>
+      <p>عندك بيانات تحتاج تحليلًا أو لوحة متابعة؟ راسلني وسنبدأ من سؤالك.</p>
+      <div class="actions">
+        <a class="btn main" href="mailto:you@example.com">البريد الإلكتروني</a>
+        <a class="btn" href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/Beosaimi" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="y"></span> جميع الحقوق محفوظة</div>
+</footer>
+
+<script>
+  // عدّل هذه القائمة فقط لإضافة مشاريعك:
+  // image: ضع مسار صورة اللوحة (مثل "images/coffee.png") أو اتركه فارغًا
+  const projects = [
+    {
+      title: "لوحة تحليل مبيعات القهوة",
+      desc: "لوحة تفاعلية تعرض المبيعات حسب المنتج والفرع والوقت، مع مؤشرات تساعد على معرفة الأصناف الأكثر ربحًا.",
+      tools: ["Power BI", "Excel", "Python"],
+      image: "",
+      live: "",
+      code: ""
+    },
+    {
+      title: "عنوان المشروع الثاني",
+      desc: "اكتب هنا سؤال العمل الذي أجاب عنه المشروع والنتيجة التي وصلت لها.",
+      tools: ["Python", "Excel"],
+      image: "",
+      live: "",
+      code: ""
+    }
+  ];
+
+  const list = document.getElementById("list");
+  projects.forEach(p => {
+    const el = document.createElement("article");
+    el.className = "project";
+
+    const thumb = document.createElement("div");
+    thumb.className = "thumb";
+    if (p.image) {
+      const img = document.createElement("img");
+      img.src = p.image; img.alt = p.title; img.loading = "lazy";
+      thumb.appendChild(img);
+    } else {
+      thumb.textContent = "صورة اللوحة";
+    }
+
+    const body = document.createElement("div");
+    const h = document.createElement("h3"); h.textContent = p.title;
+    const d = document.createElement("p"); d.textContent = p.desc;
+    const tags = document.createElement("div"); tags.className = "tags";
+    p.tools.forEach(t => { const s = document.createElement("span"); s.className = "tag"; s.textContent = t; tags.appendChild(s); });
+    const links = document.createElement("div"); links.className = "links";
+    [["عرض المشروع", p.live], ["الكود", p.code]].forEach(([label, href]) => {
+      if (!href) return;
+      const a = document.createElement("a");
+      a.href = href; a.textContent = label; a.target = "_blank"; a.rel = "noopener";
+      links.appendChild(a);
+    });
+
+    body.append(h, d, tags, links);
+    el.append(thumb, body);
+    list.appendChild(el);
+  });
+
+  document.getElementById("y").textContent = new Date().getFullYear();
+</script>
+</body>
 </html>
