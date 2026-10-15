@@ -39,7 +39,7 @@ const projects = [
     "النقطة الثالثة"
   ],
   tools: ["Power BI", "Excel"],
-  image: "images/project2.png",
+  image: "23sep.png",
   live: "",
   code: ""
 }
