@@ -28,8 +28,8 @@ const projects = [
     image: "aqar.png",
     live: "",
     code: ""
-  }
-];
+  },
+
 {
   title: "اسم المشروع",
   desc: "سؤال العمل اللي أجاب عنه المشروع والنتيجة اللي وصلت لها.",
@@ -43,7 +43,6 @@ const projects = [
   live: "",
   code: ""
 }
-
 /* ---------- عرض المشاريع ---------- */
 const list = document.getElementById("list");
 
