@@ -12,7 +12,7 @@ const projects = [
       "أفضل 10 منتجات وأضعفها من حيث الأداء"
     ],
     tools: ["Power BI", "Excel", "Power Query"],
-    image: "coffee.PNG",
+    image: "coffee.png",
     live: "",
     code: ""
   },
