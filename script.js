@@ -43,7 +43,7 @@ const projects = [
   live: "",
   code: ""
 }
-]
+
 /* ---------- عرض المشاريع ---------- */
 const list = document.getElementById("list");
 
