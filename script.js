@@ -25,7 +25,7 @@ const projects = [
       "النقطة الثالثة: ما القرار الذي ساعد عليه؟"
     ],
     tools: ["Python", "Excel"],
-    image: "",
+    image: "aqar.png",
     live: "",
     code: ""
   }
