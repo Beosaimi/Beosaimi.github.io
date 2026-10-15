@@ -30,7 +30,19 @@ const projects = [
     code: ""
   }
 ];
-
+{
+  title: "اسم المشروع",
+  desc: "سؤال العمل اللي أجاب عنه المشروع والنتيجة اللي وصلت لها.",
+  highlights: [
+    "النقطة الأولى",
+    "النقطة الثانية",
+    "النقطة الثالثة"
+  ],
+  tools: ["Power BI", "Excel"],
+  image: "images/project2.png",
+  live: "",
+  code: ""
+}
 /* ---------- عرض المشاريع ---------- */
 const list = document.getElementById("list");
 
